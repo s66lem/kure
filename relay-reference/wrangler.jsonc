@@ -1,0 +1,16 @@
+{
+  // cloudflare shit
+  "name": "kure-885",
+  "compatibility_date": "2026-08-01",
+  "main": "worker.js",
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "kure.salem.rip", "custom_domain": true },
+    { "pattern": "salem.rip/kure/*", "zone_name": "salem.rip" }
+  ]
+}
