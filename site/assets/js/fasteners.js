@@ -1,6 +1,7 @@
 /*
-  Click a .staple or .tape 3 times to detach it. Staples leave a hole, tape
-  doesn't. When an element loses its last fastener, it falls off screen.
+  click a .staple or .tape 3 times to detach it. staples leave a hole, tape
+  doesn't. 
+  when an element loses its last fastener, it falls off screen.
 */
 (function () {
   'use strict';
@@ -34,8 +35,8 @@
   }
 
   /*
-    Runs apply(), then calls done() when the transition finishes. Timeout
-    backstop in case a future CSS change stops transitionend from firing.
+    runs apply(), then calls done() when the transition finishes. timeout
+    backstop in case a future CSS change stops transitionend from running.
   */
   function finishOrAnimate(el, apply, done) {
     reflow(el);
@@ -67,7 +68,7 @@
 
   function detachStaple(el, rot) {
     var parent = el.parentElement;
-    // shown as the staple starts pulling free, not after it's gone
+    // shown as the staple starts pulling free
     var hole = document.createElement('span');
     hole.className = 'staple-hole';
     if (el.style.left) hole.style.left = (parseFloat(el.style.left) + 1.25) + 'px';
@@ -142,7 +143,7 @@
     });
   }
 
-  // Wire every fastener under root (default: whole document). Safe to re-call
+  // wire every fastener under root (default: whole document). Safe to re-call
   // for nodes added after load — the mend tape registers itself through this.
   function scan(root) {
     (root || document).querySelectorAll('.staple').forEach(function (el) { initFastener(el, true); });
